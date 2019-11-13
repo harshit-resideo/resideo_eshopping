@@ -42,19 +42,19 @@ class Dbhelper
   Future<Database> initializedb() async
   {
     Directory dir= await getApplicationDocumentsDirectory();
-    String path=dir.path+dbname;
-    var eshoppingdb=await openDatabase(path, version: dbversion, onCreate: _createdb);
+    String path=dir.path+_dbname;
+    var eshoppingdb=await openDatabase(path, version: _dbversion, onCreate: _createdb);
     return eshoppingdb;
   }
 
   void _createdb(Database db,int newversion) async
   {
-     return await db.execute('CREATE TABLE $tblname($colid INTEGER PRIMARY KEY,$coltitle TEXT,$cols_desc TEXT,$colimg TEXT,$colprice INTEGER,$colquantity INTEGER,$coll_desc TEXT,$colcategory TEXT,$colrating INTEGER,$colreview TEXT,$colthumbnail TEXT)');
+     return await db.execute('CREATE TABLE $_tblname($_colid INTEGER PRIMARY KEY,$_coltitle TEXT,$_cols_desc TEXT,$_colimg TEXT,$_colprice INTEGER,$_colquantity INTEGER,$_coll_desc TEXT,$_colcategory TEXT,$_colrating INTEGER,$_colreview TEXT,$_colthumbnail TEXT)');
   }
   
   Future<int> _addProduct(Product pd) async{
     Database db=await this.db;
-    var result=db.insert(tblname, pd.tomap());
+    var result=db.insert(_tblname, pd.tomap());
     return result;
   }
 
@@ -66,7 +66,7 @@ class Dbhelper
 
   Future<List> _getProductListDb() async{
     Database db=await this.db;
-    var result= db.rawQuery('SELECT * FROM $tblname');
+    var result= db.rawQuery('SELECT * FROM $_tblname');
     return result;
   }
 
@@ -85,7 +85,7 @@ class Dbhelper
 
   Future<List> getProductById(int id) async{
     Database db=await this.db;
-    var result= db.rawQuery('SELECT * FROM $tblname WHERE $colid = $id');
+    var result= db.rawQuery('SELECT * FROM $_tblname WHERE $_colid = $id');
     return result;
   }
 
@@ -99,7 +99,7 @@ class Dbhelper
 
   Future<int> updateInventoryById(int id,int newInventoryValue) async{
     Database db=await this.db;
-    var result =db.rawUpdate("UPDATE $tblname SET $colquantity = $newInventoryValue WHERE $colid = $id");
+    var result =db.rawUpdate("UPDATE $_tblname SET $_colquantity = $newInventoryValue WHERE $_colid = $id");
     return result;
   }
 
