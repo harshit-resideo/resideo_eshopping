@@ -9,20 +9,20 @@ class Dbhelper
 
   static final Dbhelper _helper=Dbhelper.private();
 
-  int dbversion=1; 
-  String dbname="eshoppingdb.db";
-  String tblname='product';
-  String colid="id";
-  String coltitle="title";
-  String cols_desc="s_desc";
-  String colimg="img";
-  String colprice="price";
-  String colquantity="quantity";
-  String coll_desc="l_desc";
-  String colcategory="category";
-  String colrating="rating";
-  String colreview="review";
-  String colthumbnail="thumbnail";
+  int _dbversion=1; 
+  String _dbname="eshoppingdb.db";
+  String _tblname='product';
+  String _colid="id";
+  String _coltitle="title";
+  String _cols_desc="s_desc";
+  String _colimg="img";
+  String _colprice="price";
+  String _colquantity="quantity";
+  String _coll_desc="l_desc";
+  String _colcategory="category";
+  String _colrating="rating";
+  String _colreview="review";
+  String _colthumbnail="thumbnail";
 
   Dbhelper.private();
 
