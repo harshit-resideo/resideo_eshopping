@@ -10,9 +10,10 @@ class Product{
   String _category;
   int _rating;
   String _review;
+  String _thumbnail;
   
-  Product(this._title,this._s_desc,this._img,this._price,this._quantity,this._l_desc,this._category,this._rating,this._review);
-  Product.withId(this._id,this._title,this._s_desc,this._img,this._price,this._quantity,this._l_desc,this._category,this._rating,this._review);
+  Product(this._title,this._s_desc,this._img,this._price,this._quantity,this._l_desc,this._category,this._rating,this._review,this._thumbnail);
+  Product.withId(this._id,this._title,this._s_desc,this._img,this._price,this._quantity,this._l_desc,this._category,this._rating,this._review,this._thumbnail);
 
   int get id => _id;
   String get title => _title;
@@ -24,15 +25,14 @@ class Product{
   String get category => _category;
   int get rating => _rating;
   String get review => _review;
+  String get thumbnail => _thumbnail;
 
   set title(String newtitle)
   {
-    if(newtitle.length > 0 && newtitle.length < 25)
     _title=newtitle;
   }
 
   set s_desc(String new_s_desc){
-     if(new_s_desc.length > 0 && new_s_desc.length < 100)
      _s_desc=new_s_desc;
   }
 
@@ -41,17 +41,14 @@ class Product{
   }
 
   set price(int newprice){
-    if (newprice > 0)
     _price=newprice;
   }
 
   set quantity(int newquantity){
-    if ( newquantity >= 0)
     _quantity=newquantity;
   }
 
   set l_desc(String new_l_desc){
-    if(new_l_desc.length > 0 && new_l_desc.length < 300)
     l_desc=new_l_desc;
   }
 
@@ -60,15 +57,17 @@ class Product{
   }
 
   set rating(int newrating){
-    if(newrating >= 0 && newrating <=5)
     _rating=newrating;
   }
 
   set review(String newreview){
-    if(newreview.length > 0 && newreview.length < 100)
     _review=newreview;
   }
   
+  set thumbnail(String newthumbnail){
+    _thumbnail=newthumbnail;
+  }
+
   Map<String,dynamic> tomap()
   {
     Map<String,dynamic> product_list=Map<String,dynamic>();
@@ -82,6 +81,7 @@ class Product{
     product_list['category']=_category;
     product_list['rating']=_rating;
     product_list['review']=_review;
+    product_list['thumbnail']=_thumbnail;
     return product_list;
   }
 
@@ -97,7 +97,7 @@ class Product{
     this._category=o['category'];
     this._rating=o['rating'];
     this._review=o['review'];
-
+    this._thumbnail=o['thumbnail'];
   }
 
 }

@@ -9,6 +9,8 @@ class Dbhelper
 
   static final Dbhelper _helper=Dbhelper.private();
 
+  int dbversion=1; 
+  String dbname="eshoppingdb.db";
   String tblname='product';
   String colid="id";
   String coltitle="title";
@@ -20,6 +22,7 @@ class Dbhelper
   String colcategory="category";
   String colrating="rating";
   String colreview="review";
+  String colthumbnail="thumbnail";
 
   Dbhelper.private();
 
@@ -39,45 +42,76 @@ class Dbhelper
   Future<Database> initializedb() async
   {
     Directory dir= await getApplicationDocumentsDirectory();
-    String path=dir.path+'eshoppingdb.db';
-    var eshoppingdb=await openDatabase(path, version: 1, onCreate: _createdb);
+    String path=dir.path+dbname;
+    var eshoppingdb=await openDatabase(path, version: dbversion, onCreate: _createdb);
     return eshoppingdb;
   }
 
   void _createdb(Database db,int newversion) async
   {
-     return await db.execute('CREATE TABLE $tblname($colid INTEGER PRIMARY KEY,$coltitle TEXT,$cols_desc TEXT,$colimg TEXT,$colprice INTEGER,$colquantity INTEGER,$coll_desc TEXT,$colcategory TEXT,$colrating INTEGER,$colreview TEXT)');
+     return await db.execute('CREATE TABLE $tblname($colid INTEGER PRIMARY KEY,$coltitle TEXT,$cols_desc TEXT,$colimg TEXT,$colprice INTEGER,$colquantity INTEGER,$coll_desc TEXT,$colcategory TEXT,$colrating INTEGER,$colreview TEXT,$colthumbnail TEXT)');
   }
   
-  Future<int> insertdb(Product pd) async{
+  Future<int> _addProduct(Product pd) async{
     Database db=await this.db;
     var result=db.insert(tblname, pd.tomap());
     return result;
   }
 
-  Future<List> getdb() async{
+  void addAllProduct(List<Product> pd) async{
+    int count=pd.length;
+    for(int i=0;i<count;i++){
+    _addProduct(pd[i]);}
+  }
+
+  Future<List> _getProductListDb() async{
     Database db=await this.db;
     var result= db.rawQuery('SELECT * FROM $tblname');
     return result;
   }
 
-  Future<int> getCount() async{
+  List<Product> getProductList()
+  {
+      List<Product> productlist=List<Product>();
+      initializedb().then((result)=>_getProductListDb().then((result){
+      int count=result.length;
+      for(int i=0;i<count;i++){
+      productlist.add(Product.fromObject(result[i]));
+      //debugPrint(productlist[i].title);
+      }
+    }));
+    return productlist;
+  }
+
+  Future<List> getProductById(int id) async{
     Database db=await this.db;
-    var result=Sqflite.firstIntValue(
-      await db.rawQuery('SELECT Count(*) FROM $tblname')
-    );
+    var result= db.rawQuery('SELECT * FROM $tblname WHERE $colid = $id');
     return result;
   }
 
-  Future<int> updatedb(Product pd) async{
-    Database db= await this.db;
-    var result = db.update(tblname, pd.tomap(),where: "$colid= ?",whereArgs: [pd.id]);
+  // Future<int> getCount() async{
+  //   Database db=await this.db;
+  //   var result=Sqflite.firstIntValue(
+  //     await db.rawQuery('SELECT Count(*) FROM $tblname')
+  //   );
+  //   return result;
+  // }
+
+  Future<int> updateInventoryById(int id,int newInventoryValue) async{
+    Database db=await this.db;
+    var result =db.rawUpdate("UPDATE $tblname SET $colquantity = $newInventoryValue WHERE $colid = $id");
     return result;
   }
 
-  Future<int> deletedb(int id) async{
-    Database db= await this.db;
-    var result=db.rawDelete('DELETE FROM $tblname WHERE $colid = $id');
-    return result;
-  }
+  // Future<int> updatedb(Product pd) async{
+  //   Database db= await this.db;
+  //   var result = db.update(tblname, pd.tomap(),where: "$colid= ?",whereArgs: [pd.id]);
+  //   return result;
+  // }
+
+  // Future<int> deletedb(int id) async{
+  //   Database db= await this.db;
+  //   var result=db.rawDelete('DELETE FROM $tblname WHERE $colid = $id');
+  //   return result;
+  // }
 }
