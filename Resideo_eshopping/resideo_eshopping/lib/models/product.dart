@@ -1,17 +1,17 @@
-class Products{
-  final String category;
-  final String image;
-  final int inventory;
-  final String longDescription;
-  final int price;
-  final int productId;
-  final String productName;
-  final int rating;
-  final String review;
-  final String shortDescription;
-  final String thumbnail;
+class Product{
+  String category;
+  String image;
+  int inventory;
+  String longDescription;
+  int price;
+  int productId;
+  String productName;
+  int rating;
+  String review;
+  String shortDescription;
+  String thumbnail;
 
-Products.fromJSON(Map<String, dynamic> jsonMap) :
+Product.fromJSON(Map<String, dynamic> jsonMap) :
   category = jsonMap['Category'],
   image = jsonMap['Image'],
   inventory = jsonMap['Inventory'],

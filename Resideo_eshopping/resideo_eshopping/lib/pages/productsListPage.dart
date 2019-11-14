@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:resideo_eshopping/models/products.dart';
+import 'package:flutter/rendering.dart';
+import 'package:resideo_eshopping/models/product.dart';
 import 'package:resideo_eshopping/repository/products_repository.dart';
 import 'package:resideo_eshopping/widgets/products_tile.dart';
 
 class ProductsListPage extends StatefulWidget {
   ProductsListPage({Key key, this.title}) : super(key: key);
 
-  final String title;
+  String title;
 
   @override 
   _ProductsListPageState createState() => _ProductsListPageState();
@@ -17,7 +18,7 @@ class _ProductsListPageState extends State<ProductsListPage>{
   String dropdownValue = 'Categories';
   ScrollController _scrollController = ScrollController();
 
-  final List<Products> _products = <Products>[];
+  List<Product> _products = <Product>[];
 
   final List<String> _dropdownValues = [
     "Filter",
@@ -34,12 +35,22 @@ class _ProductsListPageState extends State<ProductsListPage>{
       key: key,
       appBar: AppBar(
         title: Text(widget.title),
+        bottom: _createProgressIndicator(),
+        /*
+        bottom: PreferredSize(
+              preferredSize: Size(double.infinity, 1.0),
+              child: ProgressBar(widget.bloc.isLoading),
+        ),*/
+        /*
+        bottom: MyLinearProgressIndicator(
+          backgroundColor: Colors.black,
+        ),
+        */
         actions: <Widget>[
           dropdownWidget(),
         ],
       ),
-      body: 
-
+      body:
       ListView.builder(
         itemCount: _products.length,
         controller: _scrollController,
@@ -104,9 +115,43 @@ class _ProductsListPageState extends State<ProductsListPage>{
   }
 
   void listenForProducts() async {
-    final Stream<Products> stream = await getProducts();
-    stream.listen((Products products) =>
+    final Stream<Product> stream = await getProducts();
+    stream.listen((Product products) =>
       setState(() => _products.add(products))
       );
   }
+
+  PreferredSize _createProgressIndicator() => PreferredSize(
+  preferredSize: Size(double.infinity, 4.0),
+  child: SizedBox(
+    height: 4.0,
+    child: LinearProgressIndicator()
+  )
+);
+
 }
+
+/*
+const double _kMyLinearProgressIndicatorHeight = 6.0;
+
+  class MyLinearProgressIndicator extends LinearProgressIndicator
+    implements PreferredSizeWidget {
+      MyLinearProgressIndicator({
+        Key key,
+        double value,
+        Color backgroundColor,
+        Animation<Color> valueColor,
+      }) : super(
+            key: key,
+            value: value,
+            backgroundColor: backgroundColor,
+            valueColor:valueColor,
+      ) {
+        preferredSize = Size(double.infinity, _kMyLinearProgressIndicatorHeight);
+      }
+
+      @override 
+      Size preferredSize;
+    }
+    */
+
