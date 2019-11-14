@@ -36,16 +36,6 @@ class _ProductsListPageState extends State<ProductsListPage>{
       appBar: AppBar(
         title: Text(widget.title),
         bottom: _createProgressIndicator(),
-        /*
-        bottom: PreferredSize(
-              preferredSize: Size(double.infinity, 1.0),
-              child: ProgressBar(widget.bloc.isLoading),
-        ),*/
-        /*
-        bottom: MyLinearProgressIndicator(
-          backgroundColor: Colors.black,
-        ),
-        */
         actions: <Widget>[
           dropdownWidget(),
         ],
@@ -130,28 +120,3 @@ class _ProductsListPageState extends State<ProductsListPage>{
 );
 
 }
-
-/*
-const double _kMyLinearProgressIndicatorHeight = 6.0;
-
-  class MyLinearProgressIndicator extends LinearProgressIndicator
-    implements PreferredSizeWidget {
-      MyLinearProgressIndicator({
-        Key key,
-        double value,
-        Color backgroundColor,
-        Animation<Color> valueColor,
-      }) : super(
-            key: key,
-            value: value,
-            backgroundColor: backgroundColor,
-            valueColor:valueColor,
-      ) {
-        preferredSize = Size(double.infinity, _kMyLinearProgressIndicatorHeight);
-      }
-
-      @override 
-      Size preferredSize;
-    }
-    */
-
