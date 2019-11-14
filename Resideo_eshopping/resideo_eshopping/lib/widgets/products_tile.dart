@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:resideo_eshopping/models/products.dart';
+import 'package:resideo_eshopping/models/product.dart';
 
 class ProductsTile extends StatelessWidget {
-  final Products _products;
+  final Product _products;
   ProductsTile(this._products);
 
   @override 
