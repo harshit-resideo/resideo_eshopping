@@ -45,6 +45,9 @@ class ProductDetail extends StatelessWidget
     // {
     //   newproductlist=helper.getProductList();
     // }
+    void navigateToCustomerAddress() async{
+     Navigator.push(context, MaterialPageRoute(builder: (context)=> classname()));
+  }
  
     return Scaffold(
       appBar: AppBar(
@@ -63,7 +66,7 @@ class ProductDetail extends StatelessWidget
                 children: <Widget>[
                    Text("Men Tshirt",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 15,color: Colors.blue),),
                    Spacer(),
-                   StarDisplay(value: 3,),
+                   StarDisplay(value: 4,),
                    //Text("Rating",textAlign: TextAlign.right,)             
                 ],
                 ),
@@ -77,7 +80,7 @@ class ProductDetail extends StatelessWidget
                    Icon(FontAwesomeIcons.rupeeSign),
                    Text("675",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 30),),
                    Spacer(),
-                   _getInventory(2),     
+                   _getInventory(8),     
                 ],
                 ),
                 SizedBox(height: 20,),
@@ -107,6 +110,7 @@ class ProductDetail extends StatelessWidget
         )
       ),
     );
+    
   }
   
   dynamic _getInventory(int quantity){
@@ -122,7 +126,5 @@ class ProductDetail extends StatelessWidget
     return  Text("In Stock",style: TextStyle(color: Colors.green,) );
   }
 
-  // void navigateToCustomerAddress() async{
-  //    Navigator.push(context, MaterialPageRoute(builder: (context)=> classname()));
-  // }
+  
 }
