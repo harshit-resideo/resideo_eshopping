@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class addUserDetails extends StatelessWidget {
+class AddUserDetails extends StatelessWidget {
   final GlobalKey<FormState> _formKeyValue = new GlobalKey<FormState>();
 
-  addUserDetails(this.estimatedCost);
+  AddUserDetails(this.estimatedCost);
   final double estimatedCost;
 
   showAlertDialog(BuildContext context) {
