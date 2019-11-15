@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:resideo_eshopping/model/eshopping_model.dart';
 import 'package:resideo_eshopping/util/dbhelper.dart';
+import 'package:resideo_eshopping/Screens/addUserDetails.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 // class ProductDetail extends StatefulWidget
@@ -47,9 +48,9 @@ class ProductDetail extends StatelessWidget
     // {
     //   newproductlist=helper.getProductList();
     // }
-  //   void navigateToCustomerAddress() async{
-  //    Navigator.push(context, MaterialPageRoute(builder: (context)=> classname()));
-  // }
+    void navigateToCustomerAddress() async{
+     Navigator.push(context, MaterialPageRoute(builder: (context)=> AddUserDetails(pd.price)));
+  }
  
     return Scaffold(
       appBar: AppBar(
@@ -69,7 +70,7 @@ class ProductDetail extends StatelessWidget
                    Text(pd.title,style: TextStyle(fontWeight: FontWeight.bold,fontSize: 15,color: Colors.blue),),
                    Spacer(),
                    StarDisplay(value: pd.rating,),
-                   //Text("Rating",textAlign: TextAlign.right,)             
+             
                 ],
                 ),
                 Text(pd.s_desc),
@@ -94,7 +95,7 @@ class ProductDetail extends StatelessWidget
                   disabledColor: Colors.blueGrey,
                   disabledTextColor: Colors.black,
                   child: Text("Order Now",style: TextStyle(fontSize: 20),),
-                  onPressed: _buttonDisabled? null:(){//navigateToCustomerAddress();
+                  onPressed: _buttonDisabled? null:(){navigateToCustomerAddress();
                   },
                 ),
                 SizedBox(height: 20,),

@@ -5,7 +5,7 @@ class AddUserDetails extends StatelessWidget {
   final GlobalKey<FormState> _formKeyValue = new GlobalKey<FormState>();
 
   AddUserDetails(this.estimatedCost);
-  final double estimatedCost;
+  final int estimatedCost;
 
   showAlertDialog(BuildContext context) {
     // set up the buttons
