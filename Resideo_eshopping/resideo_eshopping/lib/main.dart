@@ -1,10 +1,5 @@
 import 'package:flutter/material.dart';
-<<<<<<< HEAD
-import 'package:resideo_eshopping/Screens/productdetail.dart';
-=======
-import 'package:resideo_eshopping/pages/productsListPage.dart';
->>>>>>> UI of screen-1
-
+import 'package:resideo_eshopping/Screens/productsListPage.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -16,12 +11,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-<<<<<<< HEAD
-      home: ProductDetail(),
-=======
       //home: MyHomePage(title: 'Resideo e-Shopping'),
       home: ProductsListPage(title: 'Resideo e-Shopping'),
->>>>>>> UI of screen-1
     );
   }
 }

@@ -100,4 +100,17 @@ class Product{
     this._thumbnail=o['thumbnail'];
   }
 
+  Product.fromJSON(Map<String, dynamic> jsonMap) :
+  _category = jsonMap['Category'],
+  _img = jsonMap['Image'],
+  _quantity = jsonMap['Inventory'],
+  _l_desc = jsonMap['LongDescription'],
+  _price = jsonMap['Price'],
+  _id = jsonMap['ProductId'],
+  _title = jsonMap['ProductName'],
+  _rating = jsonMap['Rating'],
+  _review = jsonMap['Review'],
+  _s_desc = jsonMap['ShortDescription'],
+  _thumbnail = jsonMap['Thumbnail'];
+
 }

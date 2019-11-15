@@ -36,6 +36,8 @@ class ProductDetail extends StatelessWidget
   // Dbhelper helper = Dbhelper();
   // int count;
   // List<Product> newproductlist=List<Product>();
+  Product pd;
+  ProductDetail(this.pd);
   bool _buttonDisabled=false;
   @override
   Widget build(BuildContext context) {
@@ -45,9 +47,9 @@ class ProductDetail extends StatelessWidget
     // {
     //   newproductlist=helper.getProductList();
     // }
-    void navigateToCustomerAddress() async{
-     Navigator.push(context, MaterialPageRoute(builder: (context)=> classname()));
-  }
+  //   void navigateToCustomerAddress() async{
+  //    Navigator.push(context, MaterialPageRoute(builder: (context)=> classname()));
+  // }
  
     return Scaffold(
       appBar: AppBar(
@@ -64,21 +66,21 @@ class ProductDetail extends StatelessWidget
                  Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[
-                   Text("Men Tshirt",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 15,color: Colors.blue),),
+                   Text(pd.title,style: TextStyle(fontWeight: FontWeight.bold,fontSize: 15,color: Colors.blue),),
                    Spacer(),
-                   StarDisplay(value: 4,),
+                   StarDisplay(value: pd.rating,),
                    //Text("Rating",textAlign: TextAlign.right,)             
                 ],
                 ),
-                Text("blue Colour Shirt"),
+                Text(pd.s_desc),
                 SizedBox(height: 20,),
-                Image.network("https://firebasestorage.googleapis.com/v0/b/fluttercheck-5afbb.appspot.com/o/preview.jpeg?alt=media&token=586a9c10-6a74-4d23-b357-7b5b3e2376e8"),
+                Image.network(pd.img),
                 SizedBox(height: 20,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[
                    Icon(FontAwesomeIcons.rupeeSign),
-                   Text("675",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 30),),
+                   Text(pd.price.toString(),style: TextStyle(fontWeight: FontWeight.bold,fontSize: 30),),
                    Spacer(),
                    _getInventory(8),     
                 ],
@@ -98,11 +100,11 @@ class ProductDetail extends StatelessWidget
                 SizedBox(height: 20,),
                 Text("About This Item",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
                 SizedBox(height: 10,),
-                Text("blue Colour Shirt has a round neck has short sleeves 100 % cotton Machine Wash",style: TextStyle(fontSize: 15),),
+                Text(pd.l_desc,style: TextStyle(fontSize: 15),),
                 SizedBox(height: 20,),
                 Text('Customer Reviews',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
                 SizedBox(height: 10,),
-                Text("Nice shirt",style: TextStyle(fontSize: 15),)
+                Text(pd.review,style: TextStyle(fontSize: 15),)
                       
           ],
         ),

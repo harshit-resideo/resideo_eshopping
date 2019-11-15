@@ -89,6 +89,11 @@ class Dbhelper
     return result;
   }
 
+  // void truncateProductTable() async{
+  //   Database db= await this.db;
+  //   db.rawDelete("DELETE FROM $_tblname");
+  // }
+
   // Future<int> getCount() async{
   //   Database db=await this.db;
   //   var result=Sqflite.firstIntValue(
