@@ -46,7 +46,7 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-<<<<<<< HEAD
+
   font_awesome_flutter:
     dependency: "direct main"
     description:
@@ -54,7 +54,7 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "8.5.0"
-=======
+
   http:
     dependency: "direct main"
     description:
@@ -69,7 +69,7 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.1.3"
->>>>>>> UI of screen-1
+
   matcher:
     dependency: transitive
     description:
@@ -91,7 +91,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.6.4"
-<<<<<<< HEAD
   path_provider:
     dependency: "direct main"
     description:
@@ -99,8 +98,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.4.0"
-=======
->>>>>>> UI of screen-1
   pedantic:
     dependency: transitive
     description:
@@ -108,7 +105,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.8.0+1"
-<<<<<<< HEAD
   platform:
     dependency: transitive
     description:
@@ -116,8 +112,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.2.1"
-=======
->>>>>>> UI of screen-1
   quiver:
     dependency: transitive
     description:
@@ -165,7 +159,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.5"
-<<<<<<< HEAD
   synchronized:
     dependency: transitive
     description:
@@ -173,8 +166,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.0+1"
-=======
->>>>>>> UI of screen-1
   term_glyph:
     dependency: transitive
     description:
