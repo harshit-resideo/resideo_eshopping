@@ -14,11 +14,11 @@ class Dbhelper
   String _tblname='product';
   String _colid="id";
   String _coltitle="title";
-  String _cols_desc="s_desc";
+  String _colsDesc="s_desc";
   String _colimg="img";
   String _colprice="price";
   String _colquantity="quantity";
-  String _coll_desc="l_desc";
+  String _collDesc="l_desc";
   String _colcategory="category";
   String _colrating="rating";
   String _colreview="review";
@@ -49,7 +49,7 @@ class Dbhelper
 
   void _createdb(Database db,int newversion) async
   {
-     return await db.execute('CREATE TABLE $_tblname($_colid INTEGER PRIMARY KEY,$_coltitle TEXT,$_cols_desc TEXT,$_colimg TEXT,$_colprice INTEGER,$_colquantity INTEGER,$_coll_desc TEXT,$_colcategory TEXT,$_colrating INTEGER,$_colreview TEXT,$_colthumbnail TEXT)');
+     return await db.execute('CREATE TABLE $_tblname($_colid INTEGER PRIMARY KEY,$_coltitle TEXT,$_colsDesc TEXT,$_colimg TEXT,$_colprice INTEGER,$_colquantity INTEGER,$_collDesc TEXT,$_colcategory TEXT,$_colrating INTEGER,$_colreview TEXT,$_colthumbnail TEXT)');
   }
   
   Future<int> _addProduct(Product pd) async{
@@ -61,27 +61,19 @@ class Dbhelper
   void addAllProduct(List<Product> pd) async{
     int count=pd.length;
     for(int i=0;i<count;i++){
-    _addProduct(pd[i]);}
+    await _addProduct(pd[i]);
+    }
   }
 
-  Future<List> _getProductListDb() async{
+  
+
+  Future<List> getProductListDb() async{
     Database db=await this.db;
     var result= db.rawQuery('SELECT * FROM $_tblname');
     return result;
   }
 
-  List<Product> getProductList()
-  {
-      List<Product> productlist=List<Product>();
-      initializedb().then((result)=>_getProductListDb().then((result){
-      int count=result.length;
-      for(int i=0;i<count;i++){
-      productlist.add(Product.fromObject(result[i]));
-      //debugPrint(productlist[i].title);
-      }
-    }));
-    return productlist;
-  }
+ 
 
   Future<List> getProductById(int id) async{
     Database db=await this.db;

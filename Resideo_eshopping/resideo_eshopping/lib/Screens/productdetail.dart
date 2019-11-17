@@ -1,18 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:resideo_eshopping/model/eshopping_model.dart';
-import 'package:resideo_eshopping/util/dbhelper.dart';
 import 'package:resideo_eshopping/Screens/addUserDetails.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
-// class ProductDetail extends StatefulWidget
-// {
-//   @override
-//   State<StatefulWidget> createState() {
-//     return ProductDetailState();
-//   }
-    
-// }
 
 class StarDisplay extends StatelessWidget {
   final int value;
@@ -34,22 +24,14 @@ class StarDisplay extends StatelessWidget {
 
 class ProductDetail extends StatelessWidget
 {
-  // Dbhelper helper = Dbhelper();
-  // int count;
-  // List<Product> newproductlist=List<Product>();
+ 
   Product pd;
   ProductDetail(this.pd);
   bool _buttonDisabled=false;
   @override
   Widget build(BuildContext context) {
-    //Product mobile=Product('Nokia',' ',' ',4000,3,' ','Mobile',5,'good');
-    //helper.insertNewProduct(mobile);
-    // if(newproductlist == null)
-    // {
-    //   newproductlist=helper.getProductList();
-    // }
     void navigateToCustomerAddress() async{
-     Navigator.push(context, MaterialPageRoute(builder: (context)=> AddUserDetails(pd.price)));
+     Navigator.push(context, MaterialPageRoute(builder: (context)=> AddUserDetails(pd)));
   }
  
     return Scaffold(
@@ -62,7 +44,6 @@ class ProductDetail extends StatelessWidget
           children: <Widget>[
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              //mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
                  Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -73,7 +54,7 @@ class ProductDetail extends StatelessWidget
              
                 ],
                 ),
-                Text(pd.s_desc),
+                Text(pd.sDesc),
                 SizedBox(height: 20,),
                 Image.network(pd.img),
                 SizedBox(height: 20,),
@@ -83,7 +64,7 @@ class ProductDetail extends StatelessWidget
                    Icon(FontAwesomeIcons.rupeeSign),
                    Text(pd.price.toString(),style: TextStyle(fontWeight: FontWeight.bold,fontSize: 30),),
                    Spacer(),
-                   _getInventory(8),     
+                   _getInventory(pd.quantity),     
                 ],
                 ),
                 SizedBox(height: 20,),
@@ -101,7 +82,7 @@ class ProductDetail extends StatelessWidget
                 SizedBox(height: 20,),
                 Text("About This Item",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
                 SizedBox(height: 10,),
-                Text(pd.l_desc,style: TextStyle(fontSize: 15),),
+                Text(pd.lDesc,style: TextStyle(fontSize: 15),),
                 SizedBox(height: 20,),
                 Text('Customer Reviews',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
                 SizedBox(height: 10,),

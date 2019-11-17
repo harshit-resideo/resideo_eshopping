@@ -8,7 +8,7 @@ import 'package:resideo_eshopping/widgets/products_tile.dart';
 class ProductsListPage extends StatefulWidget {
   ProductsListPage({Key key, this.title}) : super(key: key);
 
-  String title;
+  final  String title;
 
   @override 
   _ProductsListPageState createState() => _ProductsListPageState();
@@ -99,16 +99,29 @@ class _ProductsListPageState extends State<ProductsListPage>{
     );
   }
 
+   List<Product> getProductList()
+  {
+      List<Product> productlist=List<Product>();
+      helper.initializedb().then((result)=>helper.getProductListDb().then((result){
+      int count=result.length;
+      for(int i=0;i<count;i++){
+      productlist.add(Product.fromObject(result[i]));}
+      if(productlist.length == 0)
+      listenForProducts();
+      else
+      {
+        setState(() {
+          _products=productlist;
+        });
+      } 
+    }));
+    return productlist;
+  }
+
   @override 
-  void initState() {
+  void initState(){
     super.initState();
-    newList.add(mobile);
-    newList.add(car);
-    helper.addAllProduct(newList);
-    List<Product> productList=List<Product>();
-    productList=helper.getProductList();
-    if(productList.length == 0)
-    listenForProducts();
+    getProductList();
     _scrollController.addListener(() {
     });
   }
@@ -121,22 +134,16 @@ class _ProductsListPageState extends State<ProductsListPage>{
 
   void listenForProducts() async {
     final Stream<Product> stream = await getProducts();
-    stream.listen((Product products) =>
-      setState(() => _products.add(products))
+    stream.listen((Product products) {
+      setState(() => _products.add(products));},
+      onDone: (){
+        helper.addAllProduct(_products);
+      }
       );
+    
   }
 
-  //  void listenForProducts() async {
-  //   final Stream<Product> stream = await getProducts();
-  //   stream.listen((Product products) =>
-  //     _products.add(products)
-  //     );
-  //     Dbhelper helper=Dbhelper();
-  //     helper.truncateProductTable();
-  //     helper.addAllProduct(_products);
-  // }
   
-
   PreferredSize _createProgressIndicator() => PreferredSize(
   preferredSize: Size(double.infinity, 4.0),
   child: SizedBox(

@@ -16,7 +16,7 @@ class ProductsTile extends StatelessWidget {
     children: <Widget>[
       ListTile(
         title: Text(_products.title),
-        subtitle: Text(_products.s_desc),
+        subtitle: Text(_products.sDesc),
         onTap: (){navigateToProductdetail(_products);},
         leading: Container(
           margin: EdgeInsets.only(left: 6.0),
