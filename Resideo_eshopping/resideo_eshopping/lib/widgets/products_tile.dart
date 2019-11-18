@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:resideo_eshopping/Screens/productdetail.dart';
+import 'package:resideo_eshopping/Screens/product_detail.dart';
 import 'package:resideo_eshopping/model/eshopping_model.dart';
 
 class ProductsTile extends StatelessWidget {
